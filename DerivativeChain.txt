@@ -1,0 +1,16 @@
+PredictionError -> PredictionOutput -> Layer2 -> Layer1-> Weights
+
+PredictionError = 1/2 *(desired - predicted)^2                          | e = f(p)
+PredictionOutput = Layer2_n1 + Layer2_n2 + Layer2_n3 + Layer2_n4        | p = f(l2_n1, l2_n2, l2_n3, l2_n4)
+l2_nn = l2_wn * (Layer1_n1 + Layer1_n2 + Layer1_n3 + Layer1_n4) | l2_nn = f(l2_wn, l1_nsum)
+l1_nn = Layer1_wn * (X1 + X2 + X3 + X4 + X5 + X7 + X8)              | l1_nn = f(l1_wn, X)
+
+PredictionOutput = Layer2_w1 * (Layer1_w1 * (X) + Layer1_w2 * (X) + Layer1_w3 * (X) + Layer1_w4 * (X)) + Layer2_w2 * (Layer1_w1 * (X) + Layer1_w2 * (X) + Layer1_w3 * (X) + Layer1_w4 * (X)) + Layer2_w3 * (Layer1_w1 * (X) + Layer1_w2 * (X) + Layer1_w3 * (X) + Layer1_w4 * (X)) + Layer2_w4 * (Layer1_w1 * (X) + Layer1_w2 * (X) + Layer1_w3 * (X) + Layer1_w4 * (X))
+
+
+
+de/dl2_wn = de/dp * dl2_nn/dl2_wn
+de/dl2_wn = # * (l1_n1 + l2_n2 + l2_n3 + l2_n4)
+
+de/dl1_wn = de/dp * (dl2_n1/dl1_wn + dl2_n2/dl1_wn + dl2_n3/dl1_wn + dl2_n4/dl1_wn)
+de/dl1_wn = # * (l2_w1 * (X) + l2_w2 * (X) + l2_w3 * (X) + l2_w1 * (X))
